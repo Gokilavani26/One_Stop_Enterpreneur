@@ -2,7 +2,8 @@
 var express=require("express");
 var bodyParser=require("body-parser");
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/SignUpdetails');
+const res = require("express/lib/response");
+mongoose.connect('mongodb://localhost:27017/ONESTOP');
 var db=mongoose.connection;
 db.on('error', console.log.bind(console, "connection error"));
 db.once('open', function(callback){
@@ -22,11 +23,14 @@ app.post('/form', function(req,res){
  "email":email,
  "password":password,
  }
- db.collection('details').insertOne(data,function(err, collection){
+ db.collection('enterpreneur').insertOne(data,function(err, collection){
     if (err) throw err;
-    console.log("Record inserted Successfully"); });
+    console.log("Record inserted Successfully"); 
     return 'successfull';
-   })
+   });
+   return res.redirect('http://127.0.0.1:5502/signup_success.html');
+})
+
    app.get('/',function(req,res){
    res.set({
     'Access-control-Allow-Origin': '*'
