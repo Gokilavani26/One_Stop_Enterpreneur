@@ -1,7 +1,7 @@
 var express=require("express");
 var bodyParser=require("body-parser");
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/SignUpdetails');
+mongoose.connect('mongodb://localhost:27017/ONESTOP');
 var db=mongoose.connection;
 db.on('error', console.log.bind(console, "connection error"));
 db.once('open', function(callback){
@@ -29,10 +29,10 @@ app.post('/signup', function(req,res){
  "Message":Message,
   "Provide":Provide,
  }
- db.collection('experts').insertOne(data,function(err, collection){
+ db.collection('expert').insertOne(data,function(err, collection){
     if (err) throw err;
     console.log("Record inserted Successfully"); });
-    return res.redirect('http://127.0.0.1:5500/signup_success.html');
+    return res.redirect('http://127.0.0.1:5502/signup_success.html');
    })
    app.get('/',function(req,res){
    res.set({
